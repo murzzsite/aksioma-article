@@ -3,32 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Аксиома — персональная психологическая статья-разбор для мужчин</title>
-<meta name="description" content="Аксиома: персональный разбор вашей ситуации в формате психологической статьи. Для мужчин 16–35 лет: нет цели, апатия, растерянность. Ясность пути, уверенность, харизма. Ялта, онлайн.">
+<title>Архивы Аксиомы — закрытый проект о том, как устроены деньги, люди и ты сам</title>
+<meta name="description" content="Архивы Аксиомы: закрытый проект. Смысл в обычном, сила в простом, истина в привычном. Деньги, харизма, внушение, социум, характер. Не советы, а механизмы.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Onest:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <header class="header" id="header">
   <div class="wrap header__inner">
-    <a href="#top" class="logo" aria-label="Аксиома">
-      <svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4 3 27h26L16 4Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M9.5 20h13" stroke="currentColor" stroke-width="2.4"/></svg>
-      <span>Аксиома</span>
+    <a href="#top" class="logo" aria-label="Архивы Аксиомы">
+      <svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4 3 27h26L16 4Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M9.5 20h13" stroke="currentColor" stroke-width="2.2"/></svg>
+      <span>Архивы Аксиомы</span>
     </a>
     <nav class="nav" id="nav">
-      <a href="#given">Дано</a>
-      <a href="#find">Найти</a>
-      <a href="#solution">Решение</a>
-      <a href="#pricing">Стоимость</a>
-      <a href="#process">Ход работы</a>
-      <a href="#faq">Вопросы</a>
+      <a href="#approach">Подход</a>
+      <a href="#develops">Что развивает</a>
+      <a href="#shift">Что изменится</a>
+      <a href="#catalog">Темы</a>
+      <a href="#access">Доступ</a>
     </nav>
     <div class="header__actions">
       <a href="https://t.me/sheva_aksioma" class="header__tg" target="_blank" rel="noopener">@sheva_aksioma</a>
-      <a href="#form" class="btn btn--primary">Заказать разбор</a>
+      <a href="#access" class="btn btn--green">Получить доступ</a>
       <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -37,190 +36,154 @@
 <main id="top">
 
   <section class="hero">
+    <canvas class="hero__rain" id="rain" aria-hidden="true"></canvas>
     <div class="wrap hero__grid">
       <div class="hero__text">
-        <p class="hero__kicker">Психология и биомеханика для мужчин 16–35</p>
-        <h1>Статья, написанная про вас</h1>
-        <p class="hero__lead">Вы описываете свою ситуацию. Получаете разбор: почему вы застряли, что менять и с чего начать уже на этой неделе.</p>
+        <p class="hero__kicker">Закрытый проект</p>
+        <h1>Архивы Аксиомы</h1>
+        <p class="hero__tag">Смысл в обычном, сила в простом, истина в привычном.</p>
+        <p class="hero__lead">Тебе покажут шоу, а здесь покажут закулисье: как на самом деле устроены деньги, люди и твои собственные решения.</p>
         <div class="hero__cta">
-          <a href="#form" class="btn btn--primary btn--lg">Заказать разбор</a>
-          <a href="#pricing" class="btn btn--line btn--lg">Смотреть стоимость</a>
+          <a href="#access" class="btn btn--green btn--lg">Получить доступ</a>
+          <a href="#catalog" class="btn btn--ghost btn--lg">Смотреть темы</a>
         </div>
-        <p class="hero__meta">Онлайн, анонимно. От 8 000 ₽</p>
       </div>
-
-      <figure class="posture" aria-label="Схема: как осанка меняет положение головы относительно корпуса">
-        <svg id="figure" viewBox="0 0 400 540" role="img" aria-hidden="true">
-          <defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#D3DAE6" stroke-width="1"/></pattern></defs>
-          <rect width="400" height="540" fill="url(#grid)"/>
-          <line x1="200" y1="20" x2="200" y2="504" stroke="#2237E4" stroke-width="1.5" stroke-dasharray="5 6"/>
-          <line x1="70" y1="504" x2="330" y2="504" stroke="#0E1A2C" stroke-width="2"/>
-          <path id="spine" fill="none" stroke="#0E1A2C" stroke-width="7" stroke-linecap="round"/>
-          <line id="legU" stroke="#0E1A2C" stroke-width="7" stroke-linecap="round"/>
-          <line id="legL" stroke="#0E1A2C" stroke-width="7" stroke-linecap="round"/>
-          <path id="arm" fill="none" stroke="#0E1A2C" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-          <line id="neck" stroke="#0E1A2C" stroke-width="7" stroke-linecap="round"/>
-          <circle id="head" r="27" fill="#F2F5F9" stroke="#0E1A2C" stroke-width="5"/>
-          <line id="axis" stroke="#2237E4" stroke-width="2"/>
-          <circle id="jHip" r="6" fill="#2237E4"/>
-          <circle id="jSho" r="6" fill="#2237E4"/>
-          <circle id="jHead" r="5" fill="#2237E4"/>
-        </svg>
-        <figcaption class="posture__panel">
-          <div class="posture__read">
-            <span class="posture__num" id="angle" aria-live="polite">38°</span>
-            <span class="posture__label" id="angleLabel">наклон головы вперёд</span>
-          </div>
-          <div class="posture__toggle" role="group" aria-label="Положение корпуса">
-            <button type="button" id="btnSlouch" aria-pressed="true">Сутулость</button>
-            <button type="button" id="btnUpright" aria-pressed="false">Опора</button>
-          </div>
-          <p class="posture__note">Тело и мышление связаны. Это одна из точек отсчёта в разборе, а не вся работа.</p>
-        </figcaption>
-      </figure>
+      <div class="mosaic" aria-hidden="true">
+        <img class="mosaic__a" src="img/head-circuit.jpg" alt="" width="506" height="504">
+        <img class="mosaic__b" src="img/atlas-flight.jpg" alt="" width="416" height="374">
+        <img class="mosaic__c" src="img/mask.jpg" alt="" width="330" height="332">
+      </div>
     </div>
   </section>
 
-  <section class="block" id="given">
-    <div class="wrap block__grid">
-      <h2 class="block__title">Дано</h2>
-      <div class="block__body">
-        <p class="lead">Если вы узнаёте себя хотя бы в двух пунктах, разбор для вас.</p>
+  <section class="block block--marble" id="approach">
+    <div class="wrap">
+      <h2 class="block__title">Отказ от чужого пути</h2>
+      <div class="clash">
+        <p class="clash__side"><span>Коуч</span>«Вставай в 5 утра, это дисциплина»</p>
+        <p class="clash__side"><span>Оппонент</span>«Это насилие над телом»</p>
+        <p class="clash__verdict">Оба правы, но только со своей колокольни. Их «правда» зависит от их опыта, поэтому их советы тебе и не работают.</p>
+      </div>
+      <div class="approach__cols">
+        <p class="approach__big">Здесь нет советов. Здесь показывают механизмы.</p>
+        <div class="approach__text">
+          <p>Через статистику и анализ исходов разбирается, как спорт, деньги или социум работают как система. Спорт — это и закалка, и насилие. Истина в том, для чего именно тебе это нужно.</p>
+          <p>Ты получаешь не инструкцию «как жить», а инструмент, чтобы разобрать любую ситуацию на детали. Не вести тебя, а дать оптику, с которой ты сам станешь архитектором своей жизни, а не глиной в чужих руках.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block block--dark" id="develops">
+    <div class="wrap develops__grid">
+      <div class="develops__text">
+        <h2 class="block__title">Что развивает проект</h2>
         <ul class="rows">
-          <li><strong>Цель не видна.</strong><span>Дни одинаковые. Вроде двигаетесь, но куда и зачем, непонятно.</span></li>
-          <li><strong>Серо и пусто.</strong><span>Ничего не радует, энергии нет, на «надо» не хватает сил.</span></li>
-          <li><strong>Лень и откладывание.</strong><span>Знаете, что делать, но не делаете. Потом злитесь на себя.</span></li>
-          <li><strong>Нет опоры.</strong><span>Сложно говорить уверенно, заявлять о себе, держаться на равных.</span></li>
+          <li><strong>Психологическую гибкость</strong><span>Смотреть на ситуацию с разных углов: не только как потребитель, но и как создатель, стратег и тактик одновременно.</span></li>
+          <li><strong>Мышление масштабного уровня</strong><span>Видеть связи, а не разрозненные факты. Как хобби связано с финансовой свободой, а соцсети стали главным активом.</span></li>
+          <li><strong>Глубинное целеполагание</strong><span>Понимать, какие сильные стороны можно монетизировать, не ломая образ жизни, а лишь меняя фокус.</span></li>
+          <li><strong>Осознанность в решениях</strong><span>Перейти от «так сложилось» к «я создаю такую реальность».</span></li>
         </ul>
-        <div class="ages">
-          <div><b>16–22</b><span>Выбор пути, страх будущего, непонимание, чего хотеть.</span></div>
-          <div><b>23–28</b><span>Работа без смысла, чувство, что жизнь идёт мимо.</span></div>
-          <div><b>29–35</b><span>«Я чего-то не успел», усталость, потеря драйва.</span></div>
-        </div>
+        <p class="note">Это не мануал на удалёнку за 100 тысяч и не статья о психологии. Это инжиниринг, перестройка сознания и новые нейронные связи.</p>
       </div>
+      <figure class="develops__fig"><img src="img/atlas-sphere.jpg" alt="Мраморная статуя держит светящуюся сферу из зелёного кода" width="506" height="372"></figure>
     </div>
   </section>
 
-  <section class="block block--blue" id="find">
-    <div class="wrap block__grid">
-      <h2 class="block__title">Найти</h2>
-      <div class="block__body">
-        <ul class="outcomes">
-          <li><strong>Гармонию в душе</strong><span>Меньше внутреннего шума и самокопания.</span></li>
-          <li><strong>Ясность пути</strong><span>Понимание, чего вы хотите и каким будет следующий шаг.</span></li>
-          <li><strong>Энергию действовать</strong><span>Меньше лени, больше дела без ожидания «настроя».</span></li>
-          <li><strong>Харизму и уверенность</strong><span>Спокойную опору на себя в разговоре и в решениях.</span></li>
+  <section class="block block--marble" id="shift">
+    <div class="wrap shift__grid">
+      <figure class="shift__fig"><img src="img/devil.jpg" alt="Скульптура у стены из зелёного кода" width="506" height="504"></figure>
+      <div>
+        <h2 class="block__title">Что изменится</h2>
+        <ul class="shift__list">
+          <li>Соцсети, хобби и разговоры станут источником дохода.</li>
+          <li>Обыденные вещи обретут скрытый смысл.</li>
+          <li>Знакомая правда заиграет иначе и изменит твои выводы.</li>
         </ul>
-        <p class="fine">Результат зависит от вашей включённости: статья даёт карту, идти по ней вам.</p>
+        <p class="shift__punch">Ты либо управляешь своим временем, либо продал его за 50 тысяч в месяц.</p>
       </div>
     </div>
   </section>
 
-  <section class="block" id="solution">
-    <div class="wrap block__grid">
-      <h2 class="block__title">Решение</h2>
-      <div class="block__body">
-        <p class="lead">Не абстрактный текст из интернета, а статья про вашу жизнь: психология, биомеханика поведения и работа с мышлением.</p>
-        <dl class="parts">
-          <div><dt>Причины</dt><dd>Какие установки и привычки тянут вниз и откуда они взялись.</dd></div>
-          <div><dt>Новый взгляд</dt><dd>Другая оптика на ситуацию, после которой она перестаёт быть тупиком.</dd></div>
-          <div><dt>Тело</dt><dd>Как осанка, дыхание и движения влияют на состояние и уверенность.</dd></div>
-          <div><dt>Подача</dt><dd>Из чего складывается харизма и как держаться, чтобы вас слышали.</dd></div>
-          <div><dt>Шаги</dt><dd>Конкретные действия на неделю и на месяц: режим, мышление, общение.</dd></div>
-          <div><dt>План выхода</dt><dd>Что делать первым, что вторым и как не сорваться на третий день.</dd></div>
-        </dl>
+  <section class="block block--dark" id="catalog">
+    <div class="wrap">
+      <h2 class="block__title">Каталог архива</h2>
+      <p class="block__lead">Пять разделов, двадцать одна тема. Каждая разбирается как механизм, а не как мнение.</p>
+      <div class="catalog">
+        <section class="cat">
+          <h3>Деньги</h3>
+          <ol>
+            <li><code>1.1</code>Богатых не будет больше 5% населения</li>
+            <li><code>1.2</code>Счастье в деньгах или это посредственно</li>
+            <li><code>1.3</code>Карьера на лжи, удаче или труде?</li>
+            <li><code>1.4</code>Завышение цены поднимает стоимость</li>
+          </ol>
+        </section>
+        <section class="cat">
+          <h3>Харизма</h3>
+          <ol>
+            <li><code>2.1</code>Дар или навык</li>
+            <li><code>2.2</code>Как привлекать людей, не зовя их</li>
+            <li><code>2.3</code>Молчание: слабость или сила</li>
+            <li><code>2.4</code>Преимущество нестандартности</li>
+          </ol>
+        </section>
+        <section class="cat">
+          <h3>Внушение</h3>
+          <ol>
+            <li><code>3.1</code>Вымышленные блоки в наших умах</li>
+            <li><code>3.2</code>Сила намерения: теория программирования</li>
+            <li><code>3.3</code>Страх: выдумка или болезнь</li>
+            <li><code>3.4</code>Интернетовский мусор</li>
+            <li><code>3.5</code>Дисциплина: насилие или результат</li>
+          </ol>
+        </section>
+        <section class="cat">
+          <h3>Социум</h3>
+          <ol>
+            <li><code>4.1</code>Каждый прав и одновременно нет</li>
+            <li><code>4.2</code>Вечная критика</li>
+            <li><code>4.3</code>Парадокс отношений М/Ж</li>
+            <li><code>4.4</code>Вечное доминирование</li>
+            <li><code>4.5</code>Тебе захотят верить</li>
+          </ol>
+        </section>
+        <section class="cat">
+          <h3>Характер</h3>
+          <ol>
+            <li><code>5.1</code>Люди меняются?</li>
+            <li><code>5.2</code>Сила ауры</li>
+            <li><code>5.3</code>Познание всего сущего</li>
+            <li><code>5.4</code>Судьба или назначение</li>
+          </ol>
+        </section>
       </div>
     </div>
   </section>
 
-  <section class="block block--tint" id="pricing">
-    <div class="wrap block__grid">
-      <h2 class="block__title">Стоимость</h2>
-      <div class="block__body">
-        <div class="pricing">
-          <article class="plan">
-            <h3>Персональная статья</h3>
-            <p class="plan__price">от 8 000 ₽</p>
-            <p class="plan__sub">до 12 000 ₽, в зависимости от глубины запроса</p>
-            <ul>
-              <li>Анкета о вашей ситуации</li>
-              <li>Разбор в виде статьи</li>
-              <li>Шаги и план на месяц</li>
-              <li>Один раунд уточнений после чтения</li>
-            </ul>
-            <a href="#form" class="btn btn--line btn--lg" data-plan="Персональная статья (разово)">Заказать статью</a>
-          </article>
-          <article class="plan plan--main">
-            <h3>Статья и сопровождение</h3>
-            <p class="plan__price">20 000 ₽</p>
-            <p class="plan__sub">разбор и поддержка, пока вы вносите изменения</p>
-            <ul>
-              <li>Всё из первого формата</li>
-              <li>Обратная связь по вашим шагам</li>
-              <li>Корректировка плана по ходу</li>
-              <li>Поддержка, пока вы закрепляете новое</li>
-            </ul>
-            <a href="#form" class="btn btn--white btn--lg" data-plan="Статья + сопровождение">Заказать с сопровождением</a>
-          </article>
-        </div>
-      </div>
-    </div>
+  <section class="strip" aria-hidden="true">
+    <img src="img/hand-purple.jpg" alt="" width="374" height="374">
+    <img src="img/zeus.jpg" alt="" width="330" height="330">
+    <img src="img/hand-matrix.jpg" alt="" width="330" height="330">
+    <img src="img/head-tears.jpg" alt="" width="332" height="332">
+    <img src="img/fist.jpg" alt="" width="506" height="504">
   </section>
 
-  <section class="block" id="process">
-    <div class="wrap block__grid">
-      <h2 class="block__title">Ход работы</h2>
-      <div class="block__body">
-        <ol class="steps">
-          <li><b>Заявка.</b> Оставляете контакт, пишем вам в Telegram.</li>
-          <li><b>Анкета.</b> Коротко описываете ситуацию и запрос.</li>
-          <li><b>Статья.</b> Готовим ваш персональный разбор.</li>
-          <li><b>Чтение.</b> Читаете, задаёте вопросы, уточняем детали.</li>
-          <li><b>Действие.</b> Применяете шаги, в расширенном формате идём вместе.</li>
-        </ol>
+  <section class="block block--dark block--access" id="access">
+    <div class="wrap access__grid">
+      <div class="access__text">
+        <h2 class="block__title">Не покупатель выбирает продукт, а продукт покупателя</h2>
+        <p class="access__lead">Либо ты батарейка, что пашет, либо тот, кто их вставляет. Уговаривать здесь никого не будут: пройдёт время, вспомнишь сам. Но цена со временем растёт, а зарплата нет.</p>
+        <p class="access__direct">Напрямую: <a href="https://t.me/sheva_aksioma" target="_blank" rel="noopener">@sheva_aksioma</a></p>
       </div>
-    </div>
-  </section>
-
-  <section class="block block--tint" id="faq">
-    <div class="wrap block__grid">
-      <h2 class="block__title">Вопросы</h2>
-      <div class="block__body">
-        <details class="faq"><summary>Это работает, или просто текст?</summary><p>Текст сам по себе ничего не меняет, меняют действия. Поэтому статья построена на конкретных шагах, а в формате с сопровождением мы помогаем их выполнять.</p></details>
-        <details class="faq"><summary>Не дорого ли за статью?</summary><p>Это не общая статья, а разбор под вас. Вы платите за персональную работу над вашей ситуацией, а не за текст как таковой.</p></details>
-        <details class="faq"><summary>Я не верю, что психология мне поможет</summary><p>Здесь нет абстрактных рассуждений: только практичные вещи про мышление, тело и поведение. Можно написать нам и задать вопросы до оплаты.</p></details>
-        <details class="faq"><summary>Это анонимно?</summary><p>Да. Достаточно имени или ника и контакта в Telegram. Данные не передаются третьим лицам.</p></details>
-        <details class="faq"><summary>Это заменяет психотерапию?</summary><p>Нет. Это информационно-практический формат, а не медицинская помощь. При тяжёлых состояниях обратитесь к врачу или психотерапевту.</p></details>
-        <details class="faq"><summary>Как быстро будет готово?</summary><p>Сроки зависят от формата и загрузки. Называем их сразу после получения анкеты.</p></details>
-      </div>
-    </div>
-  </section>
-
-  <section class="block block--form" id="form">
-    <div class="wrap block__grid">
-      <h2 class="block__title">Заявка</h2>
-      <div class="block__body form__wrap">
-        <div class="form__text">
-          <p class="lead">Напишем в Telegram, ответим на вопросы и подскажем подходящий формат.</p>
-          <p class="form__direct">Или сразу напишите: <a href="https://t.me/sheva_aksioma" target="_blank" rel="noopener">@sheva_aksioma</a></p>
-          <p class="fine">Работаем из Ялты, разборы проходят онлайн.</p>
-        </div>
-        <form class="form" id="leadForm" novalidate>
-          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-          <label>Имя или ник<input type="text" name="name" placeholder="Как к вам обращаться" required></label>
-          <label>Telegram или телефон<input type="text" name="contact" placeholder="@username или номер" required></label>
-          <label>Формат
-            <select name="format" id="formatSelect">
-              <option>Пока не знаю</option>
-              <option>Персональная статья (разово)</option>
-              <option>Статья + сопровождение</option>
-            </select>
-          </label>
-          <label>Коротко о запросе<textarea name="comment" rows="3" placeholder="Что сейчас беспокоит больше всего"></textarea></label>
-          <button type="submit" class="btn btn--primary btn--lg">Отправить заявку</button>
-          <p class="fine">Нажимая кнопку, вы соглашаетесь на обработку данных. Информация не передаётся третьим лицам.</p>
-        </form>
-      </div>
+      <form class="form" id="leadForm" novalidate>
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+        <label>Имя или ник<input type="text" name="name" placeholder="Как к тебе обращаться" required></label>
+        <label>Telegram или телефон<input type="text" name="contact" placeholder="@username или номер" required></label>
+        <label>Что тебя зацепило<textarea name="comment" rows="3" placeholder="Какая тема из каталога интересна больше всего"></textarea></label>
+        <button type="submit" class="btn btn--green btn--lg">Запросить доступ</button>
+        <p class="fine">Нажимая кнопку, ты соглашаешься на обработку данных. Информация не передаётся третьим лицам.</p>
+      </form>
     </div>
   </section>
 
@@ -228,7 +191,8 @@
 
 <footer class="footer">
   <div class="wrap footer__inner">
-    <span>© <span id="year"></span> Аксиома, Ялта</span>
+    <span>© <span id="year"></span> Архивы Аксиомы, Ялта</span>
+    <span>Материалы носят познавательный характер и не заменяют консультацию специалиста.</span>
     <a href="https://t.me/sheva_aksioma" target="_blank" rel="noopener">Telegram @sheva_aksioma</a>
   </div>
 </footer>

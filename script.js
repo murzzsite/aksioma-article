@@ -20,12 +20,6 @@
     nav.classList.remove('is-open');
   }));
 
-  // выбор тарифа подставляется в форму
-  const formatSelect = document.getElementById('formatSelect');
-  document.querySelectorAll('[data-plan]').forEach(a => a.addEventListener('click', () => {
-    if (formatSelect) formatSelect.value = a.dataset.plan;
-  }));
-
   const form = document.getElementById('leadForm');
   form?.addEventListener('submit', async e => {
     e.preventDefault();
@@ -75,56 +69,42 @@
     });
   });
 
-  // ===== Схема осанки: два положения, плавный переход между ними =====
-  const $ = id => document.getElementById(id);
-  const slouch = { hip: [176, 262], knee: [208, 384], ank: [200, 504], sho: [228, 160], ctl: [150, 215], head: [292, 112], elb: [246, 228], hand: [262, 296] };
-  const upright = { hip: [200, 262], knee: [200, 384], ank: [200, 504], sho: [200, 150], ctl: [200, 205], head: [200, 82], elb: [204, 222], hand: [212, 296] };
-  const lerp = (a, b, t) => a + (b - a) * t;
-  const mix = (k, t) => [lerp(slouch[k][0], upright[k][0], t), lerp(slouch[k][1], upright[k][1], t)];
+  // ===== Матричный «дождь» в первом экране =====
+  const canvas = document.getElementById('rain');
+  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const ctx = canvas.getContext('2d');
+    const glyphs = '01アイウエオカキクケコサシスセソ<>{}=+*';
+    const size = 16;
+    let cols = 0, drops = [], w = 0, h = 0, running = true;
 
-  const draw = t => {
-    const hip = mix('hip', t), knee = mix('knee', t), ank = mix('ank', t), sho = mix('sho', t);
-    const ctl = mix('ctl', t), head = mix('head', t), elb = mix('elb', t), hand = mix('hand', t);
-    $('spine').setAttribute('d', `M${hip[0]} ${hip[1]} Q${ctl[0]} ${ctl[1]} ${sho[0]} ${sho[1]}`);
-    const set = (id, a, b) => { const l = $(id); l.setAttribute('x1', a[0]); l.setAttribute('y1', a[1]); l.setAttribute('x2', b[0]); l.setAttribute('y2', b[1]); };
-    set('legU', hip, knee); set('legL', knee, ank);
-    $('arm').setAttribute('d', `M${sho[0]} ${sho[1]} L${elb[0]} ${elb[1]} L${hand[0]} ${hand[1]}`);
-    const nk = [sho[0] + (head[0] - sho[0]) * 0.55, sho[1] + (head[1] - sho[1]) * 0.55];
-    set('neck', sho, nk);
-    $('head').setAttribute('cx', head[0]); $('head').setAttribute('cy', head[1]);
-    set('axis', hip, head);
-    [['jHip', hip], ['jSho', sho], ['jHead', head]].forEach(([id, p]) => { $(id).setAttribute('cx', p[0]); $(id).setAttribute('cy', p[1]); });
-    const deg = Math.round(Math.atan2(Math.abs(head[0] - hip[0]), hip[1] - head[1]) * 180 / Math.PI);
-    $('angle').textContent = deg + '°';
-    $('angleLabel').textContent = deg > 3 ? 'наклон головы вперёд' : 'голова над опорой';
-  };
-
-  let cur = 0, raf = 0;
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const setPressed = up => {
-    $('btnSlouch').setAttribute('aria-pressed', String(!up));
-    $('btnUpright').setAttribute('aria-pressed', String(up));
-  };
-  const go = (to, dur = 1100) => {
-    cancelAnimationFrame(raf);
-    setPressed(to === 1);
-    if (reduce) { cur = to; draw(cur); return; }
-    const from = cur, start = performance.now();
-    const tick = now => {
-      const p = Math.min(1, (now - start) / dur);
-      const e = p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
-      cur = lerp(from, to, e);
-      draw(cur);
-      if (p < 1) raf = requestAnimationFrame(tick);
+    const resize = () => {
+      const r = canvas.getBoundingClientRect();
+      w = canvas.width = Math.max(1, Math.floor(r.width));
+      h = canvas.height = Math.max(1, Math.floor(r.height));
+      cols = Math.ceil(w / size);
+      drops = Array.from({ length: cols }, () => Math.random() * -h / size);
     };
-    raf = requestAnimationFrame(tick);
-  };
+    resize();
+    window.addEventListener('resize', resize);
 
-  if ($('figure')) {
-    draw(0);
-    $('btnSlouch').addEventListener('click', () => go(0));
-    $('btnUpright').addEventListener('click', () => go(1));
-    // единственная анимация на загрузке: схема выпрямляется
-    setTimeout(() => go(1, 1500), 900);
+    new IntersectionObserver(entries => { running = entries[0].isIntersecting; }).observe(canvas);
+
+    let last = 0;
+    const frame = t => {
+      requestAnimationFrame(frame);
+      if (!running || t - last < 60) return;
+      last = t;
+      ctx.fillStyle = 'rgba(6,10,8,.14)';
+      ctx.fillRect(0, 0, w, h);
+      ctx.font = size + 'px "JetBrains Mono", monospace';
+      for (let i = 0; i < cols; i++) {
+        const ch = glyphs[Math.floor(Math.random() * glyphs.length)];
+        ctx.fillStyle = Math.random() > .96 ? '#C9FFE2' : '#3DF59A';
+        ctx.fillText(ch, i * size, drops[i] * size);
+        if (drops[i] * size > h && Math.random() > .975) drops[i] = 0;
+        drops[i]++;
+      }
+    };
+    requestAnimationFrame(frame);
   }
 })();
