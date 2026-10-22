@@ -20,20 +20,11 @@
     nav.classList.remove('is-open');
   }));
 
-  document.querySelectorAll('input[type="tel"]').forEach(input => {
-    input.addEventListener('input', e => {
-      let v = e.target.value.replace(/\D/g, '');
-      if (v.startsWith('8')) v = '7' + v.slice(1);
-      if (!v.startsWith('7')) v = '7' + v;
-      v = v.slice(0, 11);
-      let out = '+7';
-      if (v.length > 1) out += ' (' + v.slice(1, 4);
-      if (v.length >= 4) out += ') ' + v.slice(4, 7);
-      if (v.length >= 7) out += '-' + v.slice(7, 9);
-      if (v.length >= 9) out += '-' + v.slice(9, 11);
-      e.target.value = out;
-    });
-  });
+  // выбор тарифа подставляется в форму
+  const formatSelect = document.getElementById('formatSelect');
+  document.querySelectorAll('[data-plan]').forEach(a => a.addEventListener('click', () => {
+    if (formatSelect) formatSelect.value = a.dataset.plan;
+  }));
 
   const form = document.getElementById('leadForm');
   form?.addEventListener('submit', async e => {
@@ -84,31 +75,56 @@
     });
   });
 
-  const targets = document.querySelectorAll(
-    '.principle, .service, .step, .fit__item, .contact-card, .faq__item, .form, .hero__card, .price-card'
-  );
-  targets.forEach(el => el.classList.add('reveal'));
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  targets.forEach(el => io.observe(el));
+  // ===== Схема осанки: два положения, плавный переход между ними =====
+  const $ = id => document.getElementById(id);
+  const slouch = { hip: [176, 262], knee: [208, 384], ank: [200, 504], sho: [228, 160], ctl: [150, 215], head: [292, 112], elb: [246, 228], hand: [262, 296] };
+  const upright = { hip: [200, 262], knee: [200, 384], ank: [200, 504], sho: [200, 150], ctl: [200, 205], head: [200, 82], elb: [204, 222], hand: [212, 296] };
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const mix = (k, t) => [lerp(slouch[k][0], upright[k][0], t), lerp(slouch[k][1], upright[k][1], t)];
 
-  const counters = document.querySelectorAll('[data-target]');
-  const countIO = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      const el = e.target;
-      const target = parseInt(el.dataset.target, 10);
-      if (Number.isNaN(target)) return;
-      const dur = 1100, start = performance.now();
-      const tick = t => {
-        const p = Math.min(1, (t - start) / dur);
-        el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
-        if (p < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-      countIO.unobserve(el);
-    });
-  }, { threshold: 0.4 });
-  counters.forEach(el => countIO.observe(el));
+  const draw = t => {
+    const hip = mix('hip', t), knee = mix('knee', t), ank = mix('ank', t), sho = mix('sho', t);
+    const ctl = mix('ctl', t), head = mix('head', t), elb = mix('elb', t), hand = mix('hand', t);
+    $('spine').setAttribute('d', `M${hip[0]} ${hip[1]} Q${ctl[0]} ${ctl[1]} ${sho[0]} ${sho[1]}`);
+    const set = (id, a, b) => { const l = $(id); l.setAttribute('x1', a[0]); l.setAttribute('y1', a[1]); l.setAttribute('x2', b[0]); l.setAttribute('y2', b[1]); };
+    set('legU', hip, knee); set('legL', knee, ank);
+    $('arm').setAttribute('d', `M${sho[0]} ${sho[1]} L${elb[0]} ${elb[1]} L${hand[0]} ${hand[1]}`);
+    const nk = [sho[0] + (head[0] - sho[0]) * 0.55, sho[1] + (head[1] - sho[1]) * 0.55];
+    set('neck', sho, nk);
+    $('head').setAttribute('cx', head[0]); $('head').setAttribute('cy', head[1]);
+    set('axis', hip, head);
+    [['jHip', hip], ['jSho', sho], ['jHead', head]].forEach(([id, p]) => { $(id).setAttribute('cx', p[0]); $(id).setAttribute('cy', p[1]); });
+    const deg = Math.round(Math.atan2(Math.abs(head[0] - hip[0]), hip[1] - head[1]) * 180 / Math.PI);
+    $('angle').textContent = deg + '°';
+    $('angleLabel').textContent = deg > 3 ? 'наклон головы вперёд' : 'голова над опорой';
+  };
+
+  let cur = 0, raf = 0;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const setPressed = up => {
+    $('btnSlouch').setAttribute('aria-pressed', String(!up));
+    $('btnUpright').setAttribute('aria-pressed', String(up));
+  };
+  const go = (to, dur = 1100) => {
+    cancelAnimationFrame(raf);
+    setPressed(to === 1);
+    if (reduce) { cur = to; draw(cur); return; }
+    const from = cur, start = performance.now();
+    const tick = now => {
+      const p = Math.min(1, (now - start) / dur);
+      const e = p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+      cur = lerp(from, to, e);
+      draw(cur);
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+  };
+
+  if ($('figure')) {
+    draw(0);
+    $('btnSlouch').addEventListener('click', () => go(0));
+    $('btnUpright').addEventListener('click', () => go(1));
+    // единственная анимация на загрузке: схема выпрямляется
+    setTimeout(() => go(1, 1500), 900);
+  }
 })();
