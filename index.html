@@ -3,14 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Архивы Аксиомы — закрытый проект о том, как устроены деньги, люди и ты сам</title>
+<title>Архивы Аксиомы — закрытый проект: философия и матрица</title>
 <meta name="description" content="Архивы Аксиомы: закрытый проект. Смысл в обычном, сила в простом, истина в привычном. Деньги, харизма, внушение, социум, характер. Не советы, а механизмы.">
+<script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('anim');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Onest:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
 </head>
 <body>
+
+<canvas id="rain" aria-hidden="true"></canvas>
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="spine" aria-hidden="true"><i class="spine__fill" id="spineFill"></i></div>
 
 <header class="header" id="header">
   <div class="wrap header__inner">
@@ -19,15 +25,15 @@
       <span>Архивы Аксиомы</span>
     </a>
     <nav class="nav" id="nav">
-      <a href="#approach">Подход</a>
+      <a href="#approach">Механизм</a>
       <a href="#develops">Что развивает</a>
-      <a href="#shift">Что изменится</a>
       <a href="#catalog">Темы</a>
+      <a href="#shift">Что изменится</a>
       <a href="#access">Доступ</a>
     </nav>
     <div class="header__actions">
       <a href="https://t.me/sheva_aksioma" class="header__tg" target="_blank" rel="noopener">@sheva_aksioma</a>
-      <a href="#access" class="btn btn--green">Получить доступ</a>
+      <a href="#access" class="btn btn--orange" data-magnet>Получить доступ</a>
       <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -35,145 +41,147 @@
 
 <main id="top">
 
-  <section class="hero">
-    <canvas class="hero__rain" id="rain" aria-hidden="true"></canvas>
-    <div class="wrap hero__grid">
-      <div class="hero__text">
-        <p class="hero__kicker">Закрытый проект</p>
-        <h1>Архивы Аксиомы</h1>
-        <p class="hero__tag">Смысл в обычном, сила в простом, истина в привычном.</p>
-        <p class="hero__lead">Тебе покажут шоу, а здесь покажут закулисье: как на самом деле устроены деньги, люди и твои собственные решения.</p>
-        <div class="hero__cta">
-          <a href="#access" class="btn btn--green btn--lg">Получить доступ</a>
-          <a href="#catalog" class="btn btn--ghost btn--lg">Смотреть темы</a>
-        </div>
+  <section class="hero" data-scene="hero">
+    <div class="wrap hero__inner">
+      <p class="mono hero__kicker"><i class="sq"></i>Закрытый проект</p>
+      <h1 class="hero__title" aria-label="Архивы Аксиомы">
+        <span class="mask"><span>Архивы</span></span>
+        <span class="mask"><span>Аксиомы</span></span>
+      </h1>
+      <p class="hero__tag mask"><span>Смысл в обычном, сила в простом, истина в привычном.</span></p>
+      <div class="hero__cta">
+        <a href="#access" class="btn btn--orange btn--lg" data-magnet>Получить доступ</a>
+        <a href="#catalog" class="btn btn--ghost btn--lg" data-magnet>Смотреть темы</a>
       </div>
-      <div class="mosaic" aria-hidden="true">
-        <img class="mosaic__a" src="img/head-circuit.jpg" alt="" width="506" height="504">
-        <img class="mosaic__b" src="img/atlas-flight.jpg" alt="" width="416" height="374">
-        <img class="mosaic__c" src="img/mask.jpg" alt="" width="330" height="332">
-      </div>
+      <dl class="hero__facts mono">
+        <div><dt>разделов</dt><dd>5</dd></div>
+        <div><dt>тем</dt><dd>21</dd></div>
+        <div><dt>советов</dt><dd>0</dd></div>
+      </dl>
     </div>
+    <p class="hero__scroll mono" aria-hidden="true">скролл</p>
   </section>
 
-  <section class="block block--marble" id="approach">
+  <section class="block" id="approach" data-scene="approach">
     <div class="wrap">
-      <h2 class="block__title">Отказ от чужого пути</h2>
-      <div class="clash">
-        <p class="clash__side"><span>Коуч</span>«Вставай в 5 утра, это дисциплина»</p>
-        <p class="clash__side"><span>Оппонент</span>«Это насилие над телом»</p>
-        <p class="clash__verdict">Оба правы, но только со своей колокольни. Их «правда» зависит от их опыта, поэтому их советы тебе и не работают.</p>
+      <p class="mono tag"><i class="sq"></i>01 · механизм</p>
+      <h2 class="title manifest" id="manifest">Здесь нет советов. Здесь показывают механизмы.</h2>
+
+      <div class="diagram" id="diagram">
+        <svg class="diagram__lines" viewBox="0 0 1000 360" preserveAspectRatio="none" aria-hidden="true">
+          <path class="dl" d="M250 80 C 250 200, 500 170, 500 260"/>
+          <path class="dl" d="M750 80 C 750 200, 500 170, 500 260"/>
+        </svg>
+        <div class="node node--l"><span class="mono">коуч</span><p>«Вставай в 5 утра, это дисциплина»</p></div>
+        <div class="node node--r"><span class="mono">оппонент</span><p>«Это насилие над телом»</p></div>
+        <div class="node node--c"><span class="mono">механизм</span><p>Оба правы, но только со своей колокольни. Их «правда» зависит от их опыта.</p></div>
       </div>
-      <div class="approach__cols">
-        <p class="approach__big">Здесь нет советов. Здесь показывают механизмы.</p>
-        <div class="approach__text">
-          <p>Через статистику и анализ исходов разбирается, как спорт, деньги или социум работают как система. Спорт — это и закалка, и насилие. Истина в том, для чего именно тебе это нужно.</p>
-          <p>Ты получаешь не инструкцию «как жить», а инструмент, чтобы разобрать любую ситуацию на детали. Не вести тебя, а дать оптику, с которой ты сам станешь архитектором своей жизни, а не глиной в чужих руках.</p>
-        </div>
-      </div>
+
+      <ol class="flow">
+        <li><b>Ситуация</b></li>
+        <li><b>Механизм</b></li>
+        <li><b>Исход</b></li>
+        <li><b>Твой выбор</b></li>
+      </ol>
+      <p class="lead">Спорт — и закалка, и насилие. Истина в том, для чего именно тебе это нужно. Не вести тебя, а дать оптику, с которой ты сам станешь архитектором своей жизни, а не глиной в чужих руках.</p>
     </div>
   </section>
 
-  <section class="block block--dark" id="develops">
-    <div class="wrap develops__grid">
+  <section class="block" id="develops" data-scene="develops">
+    <div class="wrap develops">
       <div class="develops__text">
-        <h2 class="block__title">Что развивает проект</h2>
-        <ul class="rows">
-          <li><strong>Психологическую гибкость</strong><span>Смотреть на ситуацию с разных углов: не только как потребитель, но и как создатель, стратег и тактик одновременно.</span></li>
-          <li><strong>Мышление масштабного уровня</strong><span>Видеть связи, а не разрозненные факты. Как хобби связано с финансовой свободой, а соцсети стали главным активом.</span></li>
-          <li><strong>Глубинное целеполагание</strong><span>Понимать, какие сильные стороны можно монетизировать, не ломая образ жизни, а лишь меняя фокус.</span></li>
-          <li><strong>Осознанность в решениях</strong><span>Перейти от «так сложилось» к «я создаю такую реальность».</span></li>
+        <p class="mono tag"><i class="sq"></i>02 · что развивает</p>
+        <h2 class="title">Четыре навыка вместо четырёх советов</h2>
+        <ul class="skills">
+          <li><i class="sq"></i><div><strong>Психологическая гибкость</strong><span>Смотреть на ситуацию как потребитель, создатель, стратег и тактик одновременно.</span></div></li>
+          <li><i class="sq"></i><div><strong>Мышление масштаба</strong><span>Видеть связи: как хобби связано с финансовой свободой, а соцсети стали активом.</span></div></li>
+          <li><i class="sq"></i><div><strong>Глубинное целеполагание</strong><span>Монетизировать сильные стороны, не ломая образ жизни, а лишь меняя фокус.</span></div></li>
+          <li><i class="sq"></i><div><strong>Осознанность решений</strong><span>От «так сложилось» к «я создаю такую реальность».</span></div></li>
         </ul>
-        <p class="note">Это не мануал на удалёнку за 100 тысяч и не статья о психологии. Это инжиниринг, перестройка сознания и новые нейронные связи.</p>
       </div>
-      <figure class="develops__fig"><img src="img/atlas-sphere.jpg" alt="Мраморная статуя держит светящуюся сферу из зелёного кода" width="506" height="372"></figure>
+      <figure class="statue"><img src="img/head-circuit.jpg" alt="Мраморная голова с зелёной схемой на лице" width="506" height="504"></figure>
     </div>
   </section>
 
-  <section class="block block--marble" id="shift">
-    <div class="wrap shift__grid">
-      <figure class="shift__fig"><img src="img/devil.jpg" alt="Скульптура у стены из зелёного кода" width="506" height="504"></figure>
-      <div>
-        <h2 class="block__title">Что изменится</h2>
-        <ul class="shift__list">
-          <li>Соцсети, хобби и разговоры станут источником дохода.</li>
-          <li>Обыденные вещи обретут скрытый смысл.</li>
-          <li>Знакомая правда заиграет иначе и изменит твои выводы.</li>
-        </ul>
-        <p class="shift__punch">Ты либо управляешь своим временем, либо продал его за 50 тысяч в месяц.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="block block--dark" id="catalog">
+  <section class="block" id="catalog" data-scene="catalog">
     <div class="wrap">
-      <h2 class="block__title">Каталог архива</h2>
-      <p class="block__lead">Пять разделов, двадцать одна тема. Каждая разбирается как механизм, а не как мнение.</p>
-      <div class="catalog">
-        <section class="cat">
-          <h3>Деньги</h3>
-          <ol>
+      <p class="mono tag"><i class="sq"></i>03 · каталог</p>
+      <h2 class="title">Карта архива: 5 разделов, 21 тема</h2>
+      <p class="lead lead--tight">Длина полосы показывает, сколько тем в разделе. Выбери раздел.</p>
+      <div class="map">
+        <div class="map__tabs" role="tablist" aria-label="Разделы архива">
+          <button role="tab" aria-selected="true" aria-controls="p0" id="t0" style="--n:4"><span>Деньги</span><i></i><b>4</b></button>
+          <button role="tab" aria-selected="false" aria-controls="p1" id="t1" style="--n:4" tabindex="-1"><span>Харизма</span><i></i><b>4</b></button>
+          <button role="tab" aria-selected="false" aria-controls="p2" id="t2" style="--n:5" tabindex="-1"><span>Внушение</span><i></i><b>5</b></button>
+          <button role="tab" aria-selected="false" aria-controls="p3" id="t3" style="--n:5" tabindex="-1"><span>Социум</span><i></i><b>5</b></button>
+          <button role="tab" aria-selected="false" aria-controls="p4" id="t4" style="--n:4" tabindex="-1"><span>Характер</span><i></i><b>4</b></button>
+        </div>
+        <div class="map__panels">
+          <ol class="panel" role="tabpanel" id="p0" aria-labelledby="t0">
             <li><code>1.1</code>Богатых не будет больше 5% населения</li>
             <li><code>1.2</code>Счастье в деньгах или это посредственно</li>
             <li><code>1.3</code>Карьера на лжи, удаче или труде?</li>
             <li><code>1.4</code>Завышение цены поднимает стоимость</li>
           </ol>
-        </section>
-        <section class="cat">
-          <h3>Харизма</h3>
-          <ol>
+          <ol class="panel" role="tabpanel" id="p1" aria-labelledby="t1" hidden>
             <li><code>2.1</code>Дар или навык</li>
             <li><code>2.2</code>Как привлекать людей, не зовя их</li>
             <li><code>2.3</code>Молчание: слабость или сила</li>
             <li><code>2.4</code>Преимущество нестандартности</li>
           </ol>
-        </section>
-        <section class="cat">
-          <h3>Внушение</h3>
-          <ol>
+          <ol class="panel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
             <li><code>3.1</code>Вымышленные блоки в наших умах</li>
             <li><code>3.2</code>Сила намерения: теория программирования</li>
             <li><code>3.3</code>Страх: выдумка или болезнь</li>
             <li><code>3.4</code>Интернетовский мусор</li>
             <li><code>3.5</code>Дисциплина: насилие или результат</li>
           </ol>
-        </section>
-        <section class="cat">
-          <h3>Социум</h3>
-          <ol>
+          <ol class="panel" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
             <li><code>4.1</code>Каждый прав и одновременно нет</li>
             <li><code>4.2</code>Вечная критика</li>
             <li><code>4.3</code>Парадокс отношений М/Ж</li>
             <li><code>4.4</code>Вечное доминирование</li>
             <li><code>4.5</code>Тебе захотят верить</li>
           </ol>
-        </section>
-        <section class="cat">
-          <h3>Характер</h3>
-          <ol>
+          <ol class="panel" role="tabpanel" id="p4" aria-labelledby="t4" hidden>
             <li><code>5.1</code>Люди меняются?</li>
             <li><code>5.2</code>Сила ауры</li>
             <li><code>5.3</code>Познание всего сущего</li>
             <li><code>5.4</code>Судьба или назначение</li>
           </ol>
-        </section>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block block--shift" id="shift" data-scene="shift">
+    <div class="wrap shift">
+      <figure class="statue statue--b"><img src="img/devil.jpg" alt="Скульптура у стены из зелёного кода" width="506" height="504"></figure>
+      <div>
+        <p class="mono tag"><i class="sq"></i>04 · что изменится</p>
+        <ul class="shift__list">
+          <li><i class="sq"></i>Соцсети, хобби и разговоры станут источником дохода.</li>
+          <li><i class="sq"></i>Обыденные вещи обретут скрытый смысл.</li>
+          <li><i class="sq"></i>Знакомая правда заиграет иначе и изменит твои выводы.</li>
+        </ul>
+        <p class="punch">Ты либо управляешь своим временем, либо продал его за 50 тысяч в месяц.</p>
       </div>
     </div>
   </section>
 
   <section class="strip" aria-hidden="true">
-    <img src="img/hand-purple.jpg" alt="" width="374" height="374">
-    <img src="img/zeus.jpg" alt="" width="330" height="330">
-    <img src="img/hand-matrix.jpg" alt="" width="330" height="330">
-    <img src="img/head-tears.jpg" alt="" width="332" height="332">
-    <img src="img/fist.jpg" alt="" width="506" height="504">
+    <div class="strip__track" id="stripTrack">
+      <img src="img/hand-purple.jpg" alt="" width="374" height="374"><img src="img/zeus.jpg" alt="" width="330" height="330"><img src="img/hand-matrix.jpg" alt="" width="330" height="330"><img src="img/head-tears.jpg" alt="" width="332" height="332"><img src="img/fist.jpg" alt="" width="506" height="504"><img src="img/mask.jpg" alt="" width="330" height="332"><img src="img/atlas-sphere.jpg" alt="" width="506" height="372">
+      <img src="img/hand-purple.jpg" alt="" width="374" height="374"><img src="img/zeus.jpg" alt="" width="330" height="330"><img src="img/hand-matrix.jpg" alt="" width="330" height="330"><img src="img/head-tears.jpg" alt="" width="332" height="332"><img src="img/fist.jpg" alt="" width="506" height="504"><img src="img/mask.jpg" alt="" width="330" height="332"><img src="img/atlas-sphere.jpg" alt="" width="506" height="372">
+    </div>
   </section>
 
-  <section class="block block--dark block--access" id="access">
-    <div class="wrap access__grid">
-      <div class="access__text">
-        <h2 class="block__title">Не покупатель выбирает продукт, а продукт покупателя</h2>
-        <p class="access__lead">Либо ты батарейка, что пашет, либо тот, кто их вставляет. Уговаривать здесь никого не будут: пройдёт время, вспомнишь сам. Но цена со временем растёт, а зарплата нет.</p>
+  <section class="block block--access" id="access" data-scene="access">
+    <div class="wrap access">
+      <div>
+        <p class="mono tag"><i class="sq"></i>05 · доступ</p>
+        <h2 class="title">Не покупатель выбирает продукт, а продукт покупателя</h2>
+        <p class="lead lead--tight">Либо ты батарейка, что пашет, либо тот, кто их вставляет. Уговаривать здесь никого не будут. Но цена со временем растёт, а зарплата нет.</p>
         <p class="access__direct">Напрямую: <a href="https://t.me/sheva_aksioma" target="_blank" rel="noopener">@sheva_aksioma</a></p>
       </div>
       <form class="form" id="leadForm" novalidate>
@@ -181,7 +189,7 @@
         <label>Имя или ник<input type="text" name="name" placeholder="Как к тебе обращаться" required></label>
         <label>Telegram или телефон<input type="text" name="contact" placeholder="@username или номер" required></label>
         <label>Что тебя зацепило<textarea name="comment" rows="3" placeholder="Какая тема из каталога интересна больше всего"></textarea></label>
-        <button type="submit" class="btn btn--green btn--lg">Запросить доступ</button>
+        <button type="submit" class="btn btn--orange btn--lg" data-magnet>Запросить доступ</button>
         <p class="fine">Нажимая кнопку, ты соглашаешься на обработку данных. Информация не передаётся третьим лицам.</p>
       </form>
     </div>
@@ -201,6 +209,9 @@
   <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M21.9 4.3 18.7 19.6c-.2 1-.9 1.3-1.7.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.7-7.9c.4-.3-.1-.5-.6-.2L6.6 13.3 2 11.9c-1-.3-1-1 .2-1.5L20.2 3.5c.8-.3 1.6.2 1.7.8Z"/></svg>
 </a>
 
-<script src="script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script type="module" src="script.js"></script>
 </body>
 </html>
