@@ -315,6 +315,13 @@ if (hasGsap && !reduce) {
     gsap.fromTo(img, { scale: 1.2, yPercent: -6 }, { scale: 1, yPercent: 6, ease: 'none', scrollTrigger: { trigger: f, start: 'top bottom', end: 'bottom top', scrub: true } });
   });
 
+  // баннер: фото медленно плывёт, строки поднимаются из масок
+  const ban = $('.banner');
+  if (ban) {
+    gsap.fromTo($('img', ban), { yPercent: -7 }, { yPercent: 0, ease: 'none', scrollTrigger: { trigger: ban, start: 'top bottom', end: 'bottom top', scrub: true } });
+    gsap.to($$('.banner__text .mask > span'), { yPercent: 0, y: 0, duration: 1.5, stagger: .14, ease: 'expo.out', scrollTrigger: { trigger: ban, start: 'top 55%' } });
+  }
+
   // оранжевый позвоночник: линия заполняется по скроллу
   gsap.to('#spineFill', { scaleY: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: true } });
 
